@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.logo Link {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+
+  a {
+    text-decoration: none;
+    color: #333;
+
+    &.active {
+      color: #0070f3;
+      font-weight: bold;
+    }
+  }
+}
+
+.controls a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #0070f3;
+}
