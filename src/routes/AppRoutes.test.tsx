@@ -27,13 +27,14 @@ describe("AppRoutes", () => {
     // screen.getByTestId('main-layout-header');
   });
 
-  //   test('renders About inside MainLayout for "/about" route', async () => {
-  //     renderWithRouter(["/about"]);
+  test('renders About inside MainLayout for "/about" route', async () => {
+    renderWithRouter(["/about"]);
 
-  //     expect(await screen.findByText(/About/i)).toBeInTheDocument();
+    const elements = await screen.findAllByText(/About/i);
+    expect(elements[1]).toBeInTheDocument();
 
-  //     // Optionally, verify layout presence
-  //   });
+    // Optionally, verify layout presence
+  });
 
   test("renders NotFound for an unknown route", async () => {
     renderWithRouter(["/unknown"]);
