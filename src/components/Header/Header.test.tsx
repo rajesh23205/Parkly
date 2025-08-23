@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 const Home = () => <div>Home page</div>;
 const About = () => <div>About page</div>;
-const Sports = () => <div>Spots Page</div>;
+const Sports = () => <div>sports Page</div>;
 const Login = () => <div>Login page</div>;
 
 describe("Test header component", () => {
@@ -37,7 +37,7 @@ describe("Test header component", () => {
 
   test("Does not add active class active on sports when not on sports", () => {
     renderWithPath("/");
-    const sportsLink = screen.getByText(/Spots/i);
+    const sportsLink = screen.getByText(/sports/i);
     expect(sportsLink).not.toHaveClass("active");
   });
 
@@ -59,7 +59,7 @@ describe("Test header component", () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/spots" element={<Sports />} />
+          <Route path="/sports" element={<Sports />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </MemoryRouter>
@@ -68,13 +68,17 @@ describe("Test header component", () => {
     // Initially should show Home page
     expect(screen.getByText(/Home Page/i)).toBeInTheDocument();
 
+    // Click Home
+    await userEvent.click(screen.getByRole("link", { name: /Home/i }));
+    expect(screen.getByText(/Home Page/i)).toBeInTheDocument();
+
     // Click About
     await userEvent.click(screen.getByRole("link", { name: /About/i }));
     expect(screen.getByText(/About Page/i)).toBeInTheDocument();
 
-    // Click Spots
-    await userEvent.click(screen.getByRole("link", { name: /spots/i }));
-    expect(screen.getByText(/Spots Page/i)).toBeInTheDocument();
+    // Click sports
+    await userEvent.click(screen.getByRole("link", { name: /sports/i }));
+    expect(screen.getByText(/sports Page/i)).toBeInTheDocument();
 
     // Click Login
     await userEvent.click(screen.getByRole("link", { name: /Login/i }));

@@ -21,10 +21,10 @@ const Header: React.FC = () => {
           About
         </Link>
         <Link
-          to="/spots"
-          className={location === "/spots" ? styles.active : ""}
+          to="/sports"
+          className={location === "/sports" ? styles.active : ""}
         >
-          Spots
+          sports
         </Link>
       </nav>
       <div className={styles.controls}>
