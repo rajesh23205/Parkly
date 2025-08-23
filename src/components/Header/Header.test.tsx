@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 const Home = () => <div>Home page</div>;
 const About = () => <div>About page</div>;
-const Sports = () => <div>Sports page</div>;
+const Sports = () => <div>Spots Page</div>;
 const Login = () => <div>Login page</div>;
 
 describe("Test header component", () => {
@@ -59,27 +59,25 @@ describe("Test header component", () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/sports" element={<Sports />} />
+          <Route path="/spots" element={<Sports />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </MemoryRouter>
     );
 
-    // const user = userEvent.setup();
+    // Initially should show Home page
+    expect(screen.getByText(/Home Page/i)).toBeInTheDocument();
 
-    // // Initially should show Home page
-    // expect(screen.getByText(/Home Page/i)).toBeInTheDocument();
+    // Click About
+    await userEvent.click(screen.getByRole("link", { name: /About/i }));
+    expect(screen.getByText(/About Page/i)).toBeInTheDocument();
 
-    // // Click About
-    // await user.click(screen.getByRole("link", { name: /About/i }));
-    // expect(screen.getByText(/About Page/i)).toBeInTheDocument();
+    // Click Spots
+    await userEvent.click(screen.getByRole("link", { name: /spots/i }));
+    expect(screen.getByText(/Spots Page/i)).toBeInTheDocument();
 
-    // // Click Spots
-    // await user.click(screen.getByRole("link", { name: /Spots/i }));
-    // expect(screen.getByText(/Spots Page/i)).toBeInTheDocument();
-
-    // // Click Login
-    // await user.click(screen.getByRole("link", { name: /Login/i }));
-    // expect(screen.getByText(/Login Page/i)).toBeInTheDocument();
+    // Click Login
+    await userEvent.click(screen.getByRole("link", { name: /Login/i }));
+    expect(screen.getByText(/Login page/i)).toBeInTheDocument();
   });
 });
