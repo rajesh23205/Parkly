@@ -1,10 +1,9 @@
-// src/routes/__tests__/AppRoutes.test.tsx
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
 import AppRoutes from "./AppRoutes";
+import { MemoryRouter } from "react-router";
+import { render, screen } from "@testing-library/react";
 
-describe("AppRoutes", () => {
+describe("Tets all the routers are navigating as expected", () => {
   function renderWithRouter(initialEntries: string[]) {
     return render(
       <MemoryRouter initialEntries={initialEntries}>
@@ -15,30 +14,20 @@ describe("AppRoutes", () => {
     );
   }
 
-  test('renders Home inside MainLayout for "/" route', async () => {
+  test("Render home page on as landing page", async () => {
     renderWithRouter(["/"]);
-
-    // Wait for Home component to appear; it must be inside MainLayout
     expect(
-      await screen.findByText(/Welcome to Our Website/i)
+      await screen.findByText(/welcome to our website/i)
     ).toBeInTheDocument();
-
-    // Optionally, verify layout element exists, e.g. header or container
-    // screen.getByTestId('main-layout-header');
   });
 
-  test('renders About inside MainLayout for "/about" route', async () => {
+  test("Render about page once navigate to about", async () => {
     renderWithRouter(["/about"]);
-
-    const elements = await screen.findAllByText(/About/i);
-    expect(elements[1]).toBeInTheDocument();
-
-    // Optionally, verify layout presence
+    expect(await screen.findByText(/This is about page/i)).toBeInTheDocument();
   });
 
-  test("renders NotFound for an unknown route", async () => {
+  test("Render page not found page on unhandled navigation", async () => {
     renderWithRouter(["/unknown"]);
-
     expect(await screen.findByText(/PageNotFound/i)).toBeInTheDocument();
   });
 });
