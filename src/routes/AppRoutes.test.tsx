@@ -21,9 +21,18 @@ describe("Tets all the routers are navigating as expected", () => {
     ).toBeInTheDocument();
   });
 
-  test("Render about page once navigate to about", async () => {
-    renderWithRouter(["/about"]);
-    expect(await screen.findByText(/This is about page/i)).toBeInTheDocument();
+  test("Render find page on as on find page", async () => {
+    renderWithRouter(["/find"]);
+    expect(
+      await screen.findByText(/welcome to our website/i)
+    ).toBeInTheDocument();
+  });
+
+  test("Render register page on as on register page", async () => {
+    renderWithRouter(["/register"]);
+    expect(
+      await screen.findByText(/This is about register parking page/i)
+    ).toBeInTheDocument();
   });
 
   test("Render page not found page on unhandled navigation", async () => {

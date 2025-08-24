@@ -14,6 +14,7 @@ import {
   Badge,
   Avatar,
   useTheme,
+  Stack,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -21,11 +22,8 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 
 const navItems = [
-  { label: "Home", path: "/" },
   { label: "Find Parking", path: "/find" },
-  { label: "Bookings", path: "/bookings" },
-  { label: "Profile", path: "/profile" },
-  { label: "Help", path: "/help" },
+  { label: "Register Parking", path: "/register" },
 ];
 
 export default function Header() {
@@ -34,10 +32,6 @@ export default function Header() {
   const theme = useTheme();
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
-  const handleLocate = () => {
-    // Integrate actual geolocation API or UI feedback
-    console.log("Requesting current location...");
-  };
 
   const drawerList = (
     <Box sx={{ width: 250 }}>
@@ -61,14 +55,16 @@ export default function Header() {
     <>
       <AppBar position="sticky" color="primary">
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Typography
-            variant="h6"
-            component={Link}
-            to="/"
-            sx={{ textDecoration: "none", color: "inherit" }}
-          >
-            ParkEasy
-          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="h6"
+              component={Link}
+              to="/"
+              sx={{ textDecoration: "none", color: "inherit" }}
+            >
+              ParkEasy
+            </Typography>
+          </Box>
 
           <Box sx={{ display: { xs: "none", sm: "flex" } }}>
             {navItems.map(({ label, path }) => (
@@ -91,12 +87,17 @@ export default function Header() {
           <Box
             sx={{ display: { xs: "none", sm: "flex" }, alignItems: "center" }}
           >
-            <IconButton
-              color="inherit"
-              onClick={handleLocate}
-              title="Locate Me"
-            >
-              <MyLocationIcon />
+            {/* Optionally, you could use this icon to eventually trigger geolocation */}
+            <IconButton color="inherit" title="Locate Me">
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={0.5}
+                sx={{ ml: 2 }}
+              >
+                <Typography variant="subtitle1">Patna</Typography>
+                <MyLocationIcon />
+              </Stack>
             </IconButton>
             <IconButton color="inherit">
               <Badge badgeContent={3} color="error">
