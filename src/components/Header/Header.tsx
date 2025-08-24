@@ -4,7 +4,6 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
   Box,
   IconButton,
   Drawer,
@@ -20,6 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
+import Button from "../Mui/Button";
 
 const navItems = [
   { label: "Find Parking", path: "/find" },
@@ -68,19 +68,7 @@ export default function Header() {
 
           <Box sx={{ display: { xs: "none", sm: "flex" } }}>
             {navItems.map(({ label, path }) => (
-              <Button
-                key={label}
-                component={Link}
-                to={path}
-                sx={{
-                  color: location.pathname === path ? "#fff" : "inherit",
-                  borderBottom:
-                    location.pathname === path ? "2px solid #fff" : "none",
-                  marginLeft: theme.spacing(2),
-                }}
-              >
-                {label}
-              </Button>
+              <Button key={label} to={path} label={label} component={Link} />
             ))}
           </Box>
 
