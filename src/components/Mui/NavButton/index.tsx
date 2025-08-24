@@ -10,7 +10,6 @@ import { useLocation } from "react-router-dom";
 type ButtonProps<C extends React.ElementType> = {
   to?: string;
   label: string;
-  isActive?: boolean;
   component?: C;
 } & Omit<MuiButtonProps<C>, "component" | "to" | "children">;
 
