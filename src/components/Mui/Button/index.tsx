@@ -1,28 +1,32 @@
 // components/NavButton.tsx
 import React from "react";
-import { Button as MuiButton, ButtonProps } from "@mui/material";
-import { useLocation } from "react-router";
+import {
+  Button as MuiButton,
+  ButtonProps as MuiButtonProps,
+} from "@mui/material";
+import { useLocation } from "react-router-dom";
 
-interface NavButtonProps extends ButtonProps {
-  to: string;
+// Generic polymorphic prop type
+type ButtonProps<C extends React.ElementType> = {
+  to?: string;
   label: string;
-  component: any;
-}
+  component?: C;
+} & Omit<MuiButtonProps<C>, "component" | "to" | "children">;
 
-const Button: React.FC<NavButtonProps> = ({
+const Button = <C extends React.ElementType = "button">({
   to,
   label,
   component,
   ...props
-}) => {
+}: ButtonProps<C>) => {
   const location = useLocation();
-  const isActive = location.pathname === to;
+  const isActive = to ? location.pathname === to : false;
 
   return (
     <MuiButton
-      component={component || "button"}
+      component={component}
       to={to}
-      {...props}
+      {...(props as ButtonProps<C>)}
       sx={{
         color: isActive ? "#fff" : "inherit",
         borderBottom: isActive ? "2px solid #fff" : "none",
