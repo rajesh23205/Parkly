@@ -19,7 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
-import Button from "../Mui/Button";
+import NavButton from "../Mui/NavButton";
 
 const navItems = [
   { label: "Find Parking", path: "/find" },
@@ -68,7 +68,7 @@ export default function Header() {
 
           <Box sx={{ display: { xs: "none", sm: "flex" } }}>
             {navItems.map(({ label, path }) => (
-              <Button key={label} to={path} label={label} component={Link} />
+              <NavButton key={label} to={path} label={label} component={Link} />
             ))}
           </Box>
 

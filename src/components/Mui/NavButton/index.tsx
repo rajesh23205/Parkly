@@ -10,10 +10,11 @@ import { useLocation } from "react-router-dom";
 type ButtonProps<C extends React.ElementType> = {
   to?: string;
   label: string;
+  isActive?: boolean;
   component?: C;
 } & Omit<MuiButtonProps<C>, "component" | "to" | "children">;
 
-const Button = <C extends React.ElementType = "button">({
+const NavButton = <C extends React.ElementType = "button">({
   to,
   label,
   component,
@@ -39,4 +40,4 @@ const Button = <C extends React.ElementType = "button">({
   );
 };
 
-export default Button;
+export default NavButton;
